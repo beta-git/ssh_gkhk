@@ -1,10 +1,10 @@
-package test;
+package my_test;
 
-public class application {
+public class test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("hello");
+
 	}
 
 }
