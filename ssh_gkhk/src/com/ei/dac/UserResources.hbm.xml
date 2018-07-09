@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ei.Bean">
+    <class name="UserResources" table="UserResources">
+ 		<id name="id" type="long" column="id">
+ 		    <generator class="foreign">
+ 		        <param name="property">user</param>
+ 		    </generator>
+ 		</id>
+ 		<one-to-one name="user" class="User" constrained="true"/>
+ 		<property name="balance" type="int">
+ 			<column name="balance" />
+ 		</property>
+ 		<set name="advice" cascade="save-update" inverse="true" where="subType='advice'"><!--**************通知列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="video" cascade="save-update" inverse="true" where="subType='video'"><!--**************视频列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="dynamic" cascade="save-update" inverse="true" where="subType='dynamic'"><!--**************动态列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="message" cascade="save-update" inverse="true" where="subType='message'"><!--**************留言列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="favorite" cascade="save-update" inverse="true" where="subType='favorite'"><!--**************收藏列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="bill" cascade="save-update" inverse="true" where="subType='bill'"><!--**************账单详情**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="focus" cascade="save-update" inverse="true" where="subType='focus'"><!--**************关注列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="fan" cascade="save-update" inverse="true"  where="subType='fan'"><!--**************粉丝列表**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="history" cascade="save-update" inverse="true" where="subType='history'"><!--**************观看记录**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+		<set name="logging" cascade="save-update" inverse="true" where="subType='logging'"><!--**************登录日志**************-->
+			<key column="userResourcesID"/>
+			<one-to-many class="MultiMedia"/>
+		</set>
+    </class>
+</hibernate-mapping>

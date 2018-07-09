@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ei.Bean">
+	<class name="MultiMedia" table="MultiMedia">
+		<id name="id" type="long">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+		<many-to-one class="UserResources" column="userResourcesID" name="userResources" not-null="true"/>
+		<property name="subType" type="string">
+			<column name="subType"></column>
+		</property>
+		<map name="resource" table="ResourceElement">
+			<key column="multiMediaID"/>
+			<map-key column="subType" type="string"/>
+			<element column="content" type="string" not-null="true"/>
+		</map>
+	</class>
+</hibernate-mapping>

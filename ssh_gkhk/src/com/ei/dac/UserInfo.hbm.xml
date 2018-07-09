@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ei.Bean">
+    <class name="UserInfo" table="UserInfo">
+ 		<id name="id" type="long" column="id">
+ 		    <generator class="foreign">
+ 		        <param name="property">user</param>
+ 		    </generator>
+ 		</id>
+ 		<one-to-one name="user" class="User" constrained="true"/>
+ 		<property name="iconURL" type="string">
+ 		    <column name="iconURL" length="255"/>
+ 		</property>
+ 		<property name="signature" type="string">
+ 		    <column name="signature" length="100"/>
+ 		</property>
+ 		<property name="gender" type="boolean">
+ 		    <column name="gender"/>
+ 		</property>
+ 		<property name="birthday" type="java.sql.Date">
+ 		    <column name="birthday"/>
+ 		</property>
+ 		<property name="address" type="string">
+ 		    <column name="address" length="255"/>
+ 		</property>
+ 		<property name="email" type="string">
+ 		    <column name="email" length="50"/>
+ 		</property>
+    </class>
+</hibernate-mapping>

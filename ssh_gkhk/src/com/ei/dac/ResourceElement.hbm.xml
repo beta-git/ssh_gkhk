@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ei.Bean">
+    <class name="ResourceElement" table="ResourceElement">
+ 		<id name="id" type="long">
+ 		    <column name="id"/>
+ 		    <generator class="increment"/>
+ 		</id>
+ 		<property name="subType" type="string" not-null="true">
+ 		    <column name="subType"/>
+ 		</property>
+ 		<property name="content" type="string" not-null="true">
+ 		    <column name="content"/>
+ 		</property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="Learning Hibernate" basedir="." default="schema">
+
+	  <property name="source.root" value="com/ei/dac"/>
+	  <property name="lib.dir" value="com/ei/libs"/>
+	  <property name="schema.dir" value="com/ei/dac"/>
+	  <property name="class.root" value="com/ei/dac"/>
+
+  	<path id="project.class.path">
+	      <!-- Include our own classes, of course -->
+	      <pathelement location="." />
+	      <!-- Include jars in the project library directory -->
+	      <fileset dir="${lib.dir}">
+	        	<include name="*.jar"/>
+	      </fileset>
+  	</path>
+
+  	<target name="codegen">
+      	<taskdef name="hbm2javaTask" 
+	         classname="org.hibernate.tool.ant.HibernateToolTask" 
+	         classpathref="project.class.path"/>
+      	<hbm2javaTask destdir=".">
+	        <configuration configurationfile="${class.root}/hibernate.cfg.xml" />  
+	    <hbm2java/>
+       	</hbm2javaTask>   
+	</target>  
+
+	 <target name="schema" depends="codegen">
+	 	<taskdef name = "hbm2ddlTask" 
+	 	    classname = "org.hibernate.tool.ant.HibernateToolTask" 
+	 	    classpathref = "project.class.path" />
+		<hbm2ddlTask destdir = "${schema.dir}">
+		   	<configuration configurationfile ="${class.root}/hibernate.cfg.xml" />
+		   	<hbm2ddl export="true" console="true" create="true"  drop="true" outputfilename="sampledb.sql" />
+		</hbm2ddlTask>
+	 </target>
+</project>
