@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping package="com.ei.Bean">
-    <class name="ResourceElement" table="ResourceElement">
+    <class name="Comment" table="Comment">
  		<id name="id" type="long">
  		    <column name="id"/>
  		    <generator class="increment"/>
  		</id>
- 		<property name="subType" type="string" not-null="true">
- 		    <column name="subType"/>
+ 		<property name="multiMediaID" type="long">
+ 			<column name="multiMediaID"/>
  		</property>
- 		<property name="content" type="string" not-null="true">
- 		    <column name="content"/>
+ 		<property name="date" type="date">
+ 			<column name="date"/>
+ 		</property>
+ 		<property name="fromUser" type="long">
+ 			<column name="fromUser" />
+ 		</property>
+ 		<property name="content" type="string">
+ 			<column name="content"/>
+ 		</property>
+ 		<property name="toUser" type="long">
+ 			<column name="toUser"/>
  		</property>
     </class>
 </hibernate-mapping>

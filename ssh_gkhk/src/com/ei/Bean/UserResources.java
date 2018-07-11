@@ -1,5 +1,5 @@
 package com.ei.Bean;
-// Generated 2018-7-9 14:16:54 by Hibernate Tools 3.2.2.GA
+// Generated 2018-7-9 22:35:38 by Hibernate Tools 3.2.2.GA
 
 
 import java.util.HashSet;

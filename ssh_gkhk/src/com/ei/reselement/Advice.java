@@ -1,36 +1,38 @@
 package com.ei.reselement;
 
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import com.ei.pojo.MultiMedia;
+import com.ei.Bean.MultiMedia;
+import com.ei.Bean.UserResources;
 
 public class Advice  extends MultiMedia{
 
 	public static final String CONTENT = "content";
 	public static final String FROM ="from";
+	public static final String SUBTYPE="advice";
 	public Advice()
 	{
 		super();
+		super.setSubType(SUBTYPE);
 	}
-	public Advice(String subType, Date date, String content, long from) {
+	public Advice(UserResources userResources, Date date, String content, long from) {
+		super.setSubType(SUBTYPE);
 		super.setDate(date);
-		super.setSubType(subType);
+		super.setUserResources(userResources);
 		setContent(content);
 		setFrom(from);
 	}
 	public Object getContent() {
-		return resource.get(CONTENT); 
+		return super.getResource().get(CONTENT); 
 	}
 	public void setContent(String content) {
-		resource.put(CONTENT, content);
+		super.getResource().put(CONTENT, content);
 	}
 	public Object getFrom() {
-		return resource.get(FROM);
+		return super.getResource().get(FROM);
 	}
 	public void setFrom(long from) {
-		resource.put(FROM,from);
+		super.getResource().put(FROM,from);
 	}
 	
 }

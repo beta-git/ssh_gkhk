@@ -16,5 +16,6 @@
         <mapping resource="com/ei/dac/UserInfo.hbm.xml"/>
         <mapping resource="com/ei/dac/UserResources.hbm.xml"/>
         <mapping resource="com/ei/dac/MultiMedia.hbm.xml"/>
+        <mapping resource="com/ei/dac/Comment.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

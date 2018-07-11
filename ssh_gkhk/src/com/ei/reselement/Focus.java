@@ -3,32 +3,31 @@ package com.ei.reselement;
 import java.sql.Date;
 import java.util.Map;
 
-import com.ei.pojo.MultiMedia;
+import com.ei.Bean.UserResources;
+import com.ei.Bean.MultiMedia;
 
 public class Focus extends MultiMedia{
 	public static final String USERID = "userId";
+	public static final String SUBTYPE = "focus";
 	public Focus() {
 		super();
+		super.setSubType(SUBTYPE);
 		// TODO Auto-generated constructor stub
 	}
-
-	public Focus(String subType, Date date, Map resource) {
-		super(subType, date, resource);
-		// TODO Auto-generated constructor stub
-	}
-	public Focus(String subType, Date date, long userId)
+	public Focus(UserResources userResources,Date date, long userId)
 	{
 		super.setDate(date);
-		super.setSubType(subType);
-		setMultiMediaId(userId);
+		super.setSubType(SUBTYPE);
+		super.setUserResources(userResources);
+		setUserID(userId);
 	}
-	public void setMultiMediaId(long userId)
+	public void setUserID(long userId)
 	{
-		resource.put(USERID, userId);
+		super.getResource().put(USERID, userId);
 	}
-	public Object getMultiMediaId()
+	public Object getUserID()
 	{
-		return resource.get(USERID);
+		return super.getResource().get(USERID);
 	}
 	
 }

@@ -11,6 +11,9 @@
 		<property name="subType" type="string">
 			<column name="subType"></column>
 		</property>
+		<property name="date" type="date">
+			<column name="date"/>
+		</property>		
 		<map name="resource" table="ResourceElement">
 			<key column="multiMediaID"/>
 			<map-key column="subType" type="string"/>

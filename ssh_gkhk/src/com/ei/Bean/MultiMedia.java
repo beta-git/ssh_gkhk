@@ -1,7 +1,8 @@
 package com.ei.Bean;
-// Generated 2018-7-9 14:16:54 by Hibernate Tools 3.2.2.GA
+// Generated 2018-7-9 22:35:38 by Hibernate Tools 3.2.2.GA
 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class MultiMedia  implements java.io.Serializable {
      private long id;
      private UserResources userResources;
      private String subType;
+     private Date date;
      private Map resource = new HashMap(0);
 
     public MultiMedia() {
@@ -23,9 +25,10 @@ public class MultiMedia  implements java.io.Serializable {
     public MultiMedia(UserResources userResources) {
         this.userResources = userResources;
     }
-    public MultiMedia(UserResources userResources, String subType, Map resource) {
+    public MultiMedia(UserResources userResources, String subType, Date date, Map resource) {
        this.userResources = userResources;
        this.subType = subType;
+       this.date = date;
        this.resource = resource;
     }
    
@@ -49,6 +52,13 @@ public class MultiMedia  implements java.io.Serializable {
     
     public void setSubType(String subType) {
         this.subType = subType;
+    }
+    public Date getDate() {
+        return this.date;
+    }
+    
+    public void setDate(Date date) {
+        this.date = date;
     }
     public Map getResource() {
         return this.resource;

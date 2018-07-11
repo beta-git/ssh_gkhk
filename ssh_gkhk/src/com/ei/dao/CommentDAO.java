@@ -2,37 +2,39 @@ package com.ei.dao;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.ei.Bean.MultiMedia;
+import com.ei.Bean.Comment;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * MultiMedia entities. Transaction control of the save(), update() and delete()
+ * Comment entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.ei.dao.MultiMedia
+ * @see com.ei.dao.Comment
  * @author MyEclipse Persistence Tools
  */
-public class MultimediaDAO extends HibernateDaoSupport {
-	private static final Logger log = LoggerFactory.getLogger(MultimediaDAO.class);
+public class CommentDAO extends HibernateDaoSupport {
+	private static final Logger log = LoggerFactory.getLogger(CommentDAO.class);
 	// property constants
-	public static final String SUB_TYPE = "subType";
+	public static final String MULTI_MEDIA_ID = "multiMediaId";
+	public static final String FROM_USER = "fromUser";
+	public static final String CONTENT = "content";
+	public static final String TO_USER = "toUser";
 
 	protected void initDao() {
 		// do nothing
 	}
 
-	public void save(MultiMedia transientInstance) {
-		log.debug("saving MultiMedia instance");
+	public void save(Comment transientInstance) {
+		log.debug("saving Comment instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -42,8 +44,8 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void delete(MultiMedia persistentInstance) {
-		log.debug("deleting MultiMedia instance");
+	public void delete(Comment persistentInstance) {
+		log.debug("deleting Comment instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
@@ -53,10 +55,10 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public MultiMedia findById(java.lang.Long id) {
-		log.debug("getting MultiMedia instance with id: " + id);
+	public Comment findById(java.lang.Long id) {
+		log.debug("getting Comment instance with id: " + id);
 		try {
-			MultiMedia instance = (MultiMedia) getHibernateTemplate().get("com.ei.dao.MultiMedia", id);
+			Comment instance = (Comment) getHibernateTemplate().get("com.ei.dao.Comment", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -64,8 +66,8 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByExample(MultiMedia instance) {
-		log.debug("finding MultiMedia instance by example");
+	public List findByExample(Comment instance) {
+		log.debug("finding Comment instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: " + results.size());
@@ -77,9 +79,9 @@ public class MultimediaDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding MultiMedia instance with property: " + propertyName + ", value: " + value);
+		log.debug("finding Comment instance with property: " + propertyName + ", value: " + value);
 		try {
-			String queryString = "from MultiMedia as model where model." + propertyName + "= ?";
+			String queryString = "from Comment as model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
@@ -87,14 +89,26 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findBySubType(Object subType) {
-		return findByProperty(SUB_TYPE, subType);
+	public List findByMultiMediaId(Object multiMediaId) {
+		return findByProperty(MULTI_MEDIA_ID, multiMediaId);
+	}
+
+	public List findByFromUser(Object fromUser) {
+		return findByProperty(FROM_USER, fromUser);
+	}
+
+	public List findByContent(Object content) {
+		return findByProperty(CONTENT, content);
+	}
+
+	public List findByToUser(Object toUser) {
+		return findByProperty(TO_USER, toUser);
 	}
 
 	public List findAll() {
-		log.debug("finding all MultiMedia instances");
+		log.debug("finding all Comment instances");
 		try {
-			String queryString = "from MultiMedia";
+			String queryString = "from Comment";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -102,10 +116,10 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public MultiMedia merge(MultiMedia detachedInstance) {
-		log.debug("merging MultiMedia instance");
+	public Comment merge(Comment detachedInstance) {
+		log.debug("merging Comment instance");
 		try {
-			MultiMedia result = (MultiMedia) getHibernateTemplate().merge(detachedInstance);
+			Comment result = (Comment) getHibernateTemplate().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -114,8 +128,8 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachDirty(MultiMedia instance) {
-		log.debug("attaching dirty MultiMedia instance");
+	public void attachDirty(Comment instance) {
+		log.debug("attaching dirty Comment instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -125,8 +139,8 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachClean(MultiMedia instance) {
-		log.debug("attaching clean MultiMedia instance");
+	public void attachClean(Comment instance) {
+		log.debug("attaching clean Comment instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -136,7 +150,7 @@ public class MultimediaDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static MultimediaDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (MultimediaDAO) ctx.getBean("MultimediaDAO");
+	public static CommentDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (CommentDAO) ctx.getBean("CommentDAO");
 	}
 }
